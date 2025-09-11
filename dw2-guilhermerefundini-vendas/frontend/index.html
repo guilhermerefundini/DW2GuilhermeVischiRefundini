@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Loja Escolar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">🛍️</div>
+        <div class="title">Loja Escolar</div>
+      </div>
+
+      <div class="controls">
+        <div class="search-wrapper">
+          <input id="search" aria-label="Buscar produtos" placeholder="Buscar produtos..." autocomplete="off" />
+          <select id="sort" aria-label="Ordenar">
+            <option value="">Ordenar</option>
+            <option value="preco_asc">Preço ↑</option>
+            <option value="preco_desc">Preço ↓</option>
+            <option value="nome_asc">Nome A-Z</option>
+            <option value="nome_desc">Nome Z-A</option>
+          </select>
+        </div>
+
+        <div class="header-actions">
+          <button id="newProductBtn" aria-label="Novo produto (Alt+N)" title="Novo produto (Alt+N)">Novo Produto</button>
+          <button id="cartBtn" aria-label="Abrir carrinho" title="Abrir carrinho">Carrinho <span id="cartBadge" aria-hidden="true">0</span></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <section class="toolbar" aria-label="Ferramentas">
+      <div class="filters">
+        <label class="visually-hidden" for="categoriaFilter">Categorias</label>
+        <select id="categoriaFilter" aria-label="Filtrar por categoria">
+          <option value="">Todas as categorias</option>
+        </select>
+        <div class="price-range">
+          <input id="minPrice" type="number" placeholder="Mín" min="0" step="0.01" aria-label="Preço mínimo">
+          <input id="maxPrice" type="number" placeholder="Máx" min="0" step="0.01" aria-label="Preço máximo">
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="exportCsv" class="ghost">Exportar CSV</button>
+        <button id="exportJson" class="ghost">Exportar JSON</button>
+      </div>
+    </section>
+
+    <section id="productGrid" class="grid" role="list" aria-live="polite"></section>
+  </main>
+
+  <!-- Modal produto -->
+  <dialog id="productModal" aria-labelledby="modalTitle">
+    <form method="dialog" id="productForm" class="modal-form">
+      <header class="modal-header">
+        <h2 id="modalTitle">Novo Produto</h2>
+        <button id="closeModal" type="button" aria-label="Fechar">✕</button>
+      </header>
+      <input id="pId" type="hidden">
+      <div class="modal-body">
+        <label>Nome<input id="pNome" required minlength="3" maxlength="60"></label>
+        <label>Descrição<textarea id="pDescricao"></textarea></label>
+        <div class="row">
+          <label>Preço<input id="pPreco" type="number" required step="0.01" min="0.01"></label>
+          <label>Estoque<input id="pEstoque" type="number" required min="0"></label>
+        </div>
+        <label>Categoria<select id="pCategoria"></select></label>
+        <label>SKU<input id="pSku"></label>
+      </div>
+      <footer class="modal-footer">
+        <button id="saveProduct" type="submit" class="primary">Salvar</button>
+        <button id="cancelProduct" type="button" class="ghost">Cancelar</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <!-- Carrinho Drawer -->
+  <aside id="cartDrawer" aria-hidden="true" role="dialog" aria-label="Carrinho de compras">
+    <header>
+      <h3>Carrinho</h3>
+      <button id="closeCart" aria-label="Fechar carrinho">✕</button>
+    </header>
+    <div id="cartItems" class="cart-items" role="list"></div>
+    <div class="cart-footer">
+      <label>Cupom <input id="coupon" placeholder="ALUNO10"></label>
+      <div id="cartTotals" aria-live="polite" class="totals"></div>
+      <button id="confirmOrder" class="primary">Confirmar Pedido</button>
+    </div>
+  </aside>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

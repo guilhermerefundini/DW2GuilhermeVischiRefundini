@@ -1,0 +1,73 @@
+:root{
+  --primary: #0EA5E9;
+  --danger: #EF4444;
+  --accent: #22C55E;
+  --bg: #F8FAFF;
+  --panel: #ffffff;
+  --muted: #6B7280;
+  --text: #0F172A;
+  --radius: 12px;
+}
+*{box-sizing:border-box}
+body{font-family:'Poppins',Inter,system-ui,Arial,Helvetica,sans-serif;color:var(--text);background:linear-gradient(180deg,#f8fbff, #ffffff);margin:0}
+.container{max-width:1100px;margin:0 auto;padding:16px}
+.site-header{background:transparent;padding:10px 0;position:sticky;top:0;backdrop-filter:saturate(90%) blur(6px);z-index:40}
+.header-inner{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:44px;height:44px;border-radius:10px;background:var(--primary);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px}
+.title{font-weight:700;font-size:18px}
+.controls{display:flex;align-items:center;gap:12px}
+.search-wrapper{display:flex;align-items:center;gap:8px}
+input,select,textarea{font-family:inherit}
+.search-wrapper input{padding:10px 12px;border-radius:10px;border:1px solid #e6eef7;min-width:220px}
+.search-wrapper select{padding:10px;border-radius:10px;border:1px solid #e6eef7}
+.header-actions button{background:var(--panel);border:1px solid #e6eef7;padding:8px 12px;border-radius:10px}
+
+.toolbar{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+.filters{display:flex;gap:12px;align-items:center}
+.filters select,.filters input{padding:8px;border-radius:8px;border:1px solid #e6eef7}
+.actions button.ghost{background:transparent;border:1px solid #e6eef7;padding:8px 10px;border-radius:8px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.card{background:var(--panel);border-radius:var(--radius);padding:14px;box-shadow:0 6px 18px rgba(14,165,233,0.06);display:flex;flex-direction:column;gap:10px}
+.card .media{height:120px;background:linear-gradient(90deg,#eef6fb,#f7fbfe);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--muted)}
+.card .title{font-weight:600;font-size:15px}
+.card .desc{font-size:13px;color:var(--muted);min-height:36px}
+.card .price{color:var(--primary);font-weight:700}
+.card .stock{font-size:12px;color:var(--muted)}
+.card .actions{display:flex;gap:8px}
+.card button{flex:1;padding:8px;border-radius:8px;border:0}
+.card button.add{background:linear-gradient(90deg,var(--primary),#0aa1d9);color:#fff}
+.card button.edit{background:#fff;border:1px solid #e6eef7}
+.card button.del{background:transparent;color:var(--danger)}
+
+#cartDrawer{position:fixed;right:20px;top:80px;width:360px;background:var(--panel);border-radius:12px;box-shadow:0 12px 40px rgba(15,23,42,0.12);padding:12px;transform:translateX(120%);transition:transform .25s ease;z-index:50}
+#cartDrawer[aria-hidden="false"]{transform:translateX(0)}
+.cart-items{max-height:55vh;overflow:auto;display:flex;flex-direction:column;gap:8px;padding:8px 0}
+.cart-item{display:flex;align-items:center;gap:8px;padding:8px;border-radius:8px;background:#fafafa}
+.cart-item .meta{flex:1}
+
+dialog{border:none;border-radius:12px;padding:0;max-width:520px}
+.modal-form{display:flex;flex-direction:column}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px;border-bottom:1px solid #f0f4fb}
+.modal-body{padding:14px;display:flex;flex-direction:column;gap:10px}
+.row{display:flex;gap:10px}
+.modal-footer{display:flex;gap:10px;justify-content:flex-end;padding:12px;border-top:1px solid #f0f4fb}
+.primary{background:linear-gradient(90deg,var(--primary),#0aa1d9);color:white;padding:10px 14px;border-radius:8px;border:0}
+.ghost{background:transparent;border:1px solid #e6eef7;padding:8px 10px;border-radius:8px}
+
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:28px;background:#111;color:#fff;padding:10px 14px;border-radius:8px;opacity:0;transition:opacity .25s,transform .25s}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(-6px)}
+
+:focus{outline:3px solid rgba(14,165,233,0.18);outline-offset:3px}
+
+@media (max-width:900px){
+  .container{padding:12px}
+  .search-wrapper input{min-width:140px}
+  #cartDrawer{right:12px;width:320px}
+}
+
+@media (max-width:520px){
+  .grid{grid-template-columns:repeat(1,1fr)}
+  dialog{width:95%}
+}
